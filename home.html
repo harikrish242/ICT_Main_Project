@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/static/css/style.css">
+<style>
+.btn-large {
+  background-color: #FF0000; /* Red */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.btn-large {width: 250px;}
+</style>
+</head>
+
+<body style="background:url(/static/images/pollution.jpg); 
+             background-size: 100%; 
+             background-repeat: no-repeat">
+ <div class="input form">
+	<h1 style="color:red;">Air Quality Index (AQI) Prediction</h1>
+	<h3 style="color:red;">Provide the pollutants concentrations in µgm-3</h3>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="text" name="PM2.5" placeholder="PM2.5" required="required" />
+        <input type="text" name="PM10" placeholder="PM10" required="required" />
+		<input type="text" name="NO" placeholder="NO" required="required" />
+		<input type="text" name="NO2" placeholder="NO2" required="required" />
+		<br>
+		<br>
+		<input type="text" name="NH3" placeholder="NH3" required="required" />
+		<input type="text" name="CO" placeholder="CO" required="required" />
+		<input type="text" name="SO2" placeholder="SO2" required="required" />
+		<input type="text" name="O3" placeholder="O3" required="required" />
+		<br>
+		<br>
+		<input type="text" name="Benzene" placeholder="Benzene" required="required" />
+		<input type="text" name="Toluene" placeholder="Toluene" required="required" />
+		<input type="text" name="Xylene" placeholder="Xylene" required="required" />
+		<select name="City" class="place holder dropdown" placeholder="City" required="required" >
+				<option value="" disabled selected hidden>Select City</option>
+				<option >Delhi</option>
+				<option >Hyderabad</option>
+				<option >Patna</option>
+				<option >Visakhapatnam</option>
+				<option >Bengaluru</option>
+				<option>Kolkata</option>
+				<option>Amaravati</option>
+				<option>Guwahati</option>
+				<option>Chandigarh</option>
+				<option>Mumbai</option>
+				<option>Thiruvananthapuram</option>
+				<option>Chennai</option>
+				<option>Gurugram</option>
+				<option>Aizawl</option>
+				<option>Shillong</option>
+				<option>Lucknow</option>
+				<option>Jaipur</option>
+				<option>Talcher</option>
+				<option>Bhopal</option>
+				<option>Amritsar</option>
+				<option>Ahmedabad</option>
+		</select>
+		<br>
+		<br>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   <h2 style="color:yellow;"> {{ prediction_text }} </h2>
+   <h3 style="color:yellow;"> {{ bucket_text }} </h3>
+
+ </div>
+
+
+</body>
+</html>
